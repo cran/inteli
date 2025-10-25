@@ -1,0 +1,54 @@
+---
+title: "inteli"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{inteli}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(inteli)
+```
+
+## Description
+
+Parameter estimation via likelihood interval (LI) compared to traditional method (CI). This is the expanded version for 'LBI'- and 'wnl'-package, formulated by Kyun-Seop Bae <k@acr.kr>.
+
+## Details
+
+Currently available for estimating a single-group variance and a two-group variance ratio. 
+
+## Author(s)
+
+Minkyu Kim <mkim@acr.kr>
+
+## References
+
+1. Wilks SS. The Large-sample Distribution of the Likelihood Ratio for Testing Composite Hypotheses. Ann Math Stat. 1938;9(1):60-62.
+
+2. Ruppert D, Cressie N, Carroll RJ. A Transformation/Weighting Model for Estimating Michaelis-Menten Parameters. Cornell University Technical Report 796. 1988.
+
+3. Pawitan Y. In All Likelihood: Statistical Modelling and Inference Using Likelihood. 2001.
+
+4. Lee MH, Bae KS. Likelihood interval for nonlinear regression. Transl Clin Pharmacol. 2023.
+  
+## Examples
+
+x <- rnorm(20, 0, 1)
+y <- rnorm(40, 0, 1)
+
+varE(x)
+varEplot(x, FALSE)
+varEplot(x, TRUE)
+
+varR(x, y)
+varRplot(x, y, FALSE)
+varRplot(x, y, TRUE)

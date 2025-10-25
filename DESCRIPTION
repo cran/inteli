@@ -1,0 +1,17 @@
+Package: inteli
+Title: Interval Estimation by Likelihoodist (LI) Compared to
+        Frequentist (CI)
+Version: 0.1.0
+Authors@R: person("Kim", "Minkyu", email = "mkim@acr.kr", role = c("aut", "cre"))
+Description: Parameter estimation via likelihood interval (LI) compared to traditional method (CI). This is the expanded version for 'LBI'- and 'wnl'-package, formulated by Kyun-Seop Bae <k@acr.kr>.
+License: MIT + file LICENSE
+Encoding: UTF-8
+RoxygenNote: 7.3.3
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2025-10-22 05:29:10 UTC; KANEYAMA
+Author: Kim Minkyu [aut, cre]
+Maintainer: Kim Minkyu <mkim@acr.kr>
+Repository: CRAN
+Date/Publication: 2025-10-25 12:40:07 UTC
