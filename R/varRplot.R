@@ -3,12 +3,12 @@
 #' This function plots a graph of interval estimation for a two group variance ratio by LI method, either in the log-likelihood function or the normalized log-likelihood value.
 #' @param num.data A numeric vector functioning as a sample data, in a numerator position.
 #' @param denom.data A numeric vector functioning as a sample data, in a denominator position.
-#' @param logLRT A function type to be plotted. A default value "FALSE" refers to the log-likelihood function plot, while "TRUE" refers to the normalized log-likelihood ratio plot, or maxLL-LL.
-#' @param conf.level A confidence level for CI method.
-#' @param df A degree of freedom for LI method in terms of the denominator degree of freedom of F-test, as (n-df) of LRT, where n is the sum of sample sizes of input datum. For a variance ratio estimation, it is suggested to be 2.4.
-#' @param low.scale A scaling factor for plotting the minimum value of x-axis, or a parameter value. The plot starts from "PE/low.scale". 5 is a default.
-#' @param up.scale A scaling factor for plotting the maximum value of x-axis, or a parameter value. The plot starts from "PE*up.scale". 5 is a default.
-#' @param k A cutoff value for LI method. Unless specified, F-test is used.
+#' @param logLRT A function type to be plotted. A default value "FALSE" refers to the log-likelihood function plot, while "TRUE" refers to the normalized log-likelihood ratio plot, or maxLL - LL.
+#' @param conf.level A confidence level for the CI method, also applied to the LI method.
+#' @param df A degree of freedom for the LI method in terms of the denominator degree of freedom of the F-test, or (n-df) of the LRT, where n is the sample size of the input data. A default value of 2.4 is suggested for a two-group variance ratio interval estimation. 
+#' @param low.scale A scaling factor for plotting the minimum value of the x-axis, or a parameter value. The plot starts with "PE/low.scale". 5 is a default.
+#' @param up.scale A scaling factor for plotting the maximum value of the x-axis, or a parameter value. The plot starts with "PE*up.scale". 5 is a default.
+#' @param k A cutoff value for the LI method. Unless specified, the F-test is used.
 #' @return Plotted graph, either in the log-likelihood function or the normalized log-likelihood value
 #' @examples
 #' x <- rnorm(20, 0, 1)

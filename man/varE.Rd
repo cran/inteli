@@ -9,15 +9,15 @@ varE(data, conf.level = 0.95, df = 1.2, lower = 1e-08, upper = 1e+06, k)
 \arguments{
 \item{data}{A numeric vector functioning as a sample data.}
 
-\item{conf.level}{A confidence level for CI method.}
+\item{conf.level}{A confidence level for the CI method, also applied to the LI method.}
 
-\item{df}{A degree of freedom for LI method in terms of the denominator degree of freedom of F-test, as (n-df) of LRT, where n is the sample size of input data. For a variance estimation, it is suggested to be 1.2.}
+\item{df}{A degree of freedom for the LI method in terms of the denominator degree of freedom of the F-test, or (n-df) of LRT, where n is the sample size of the input data. A default value of 1.2 is suggested for a single-group variance interval estimation.}
 
-\item{lower}{A lower bound of "uniroot" for lower limit (LL) calculation. 1e-08 is a default.}
+\item{lower}{A lower bound of 'uniroot' for the lower limit (LL) calculation. 1e-08 is a default.}
 
-\item{upper}{A upper bound of "uniroot" for upper limit (UL) calculation. 1e+06 is a default.}
+\item{upper}{An upper bound of 'uniroot' for the upper limit (UL) calculation. 1e+06 is a default.}
 
-\item{k}{A cutoff value for LI method. Unless specified, F-test is used.}
+\item{k}{A cutoff value for the LI method. Unless specified, the F-test is used.}
 }
 \value{
 Point Estimate (PE), lower limit/bound (LL/LB), upper limit/bound (UL/UB), width, sample size, cutoff value k and maximum log-likelihood function value are calculated.

@@ -2,11 +2,11 @@
 #'
 #' This function computes the interval estimation for a single group variance by both LI and CI method.
 #' @param data A numeric vector functioning as a sample data.
-#' @param conf.level A confidence level for CI method.
-#' @param df A degree of freedom for LI method in terms of the denominator degree of freedom of F-test, as (n-df) of LRT, where n is the sample size of input data. For a variance estimation, it is suggested to be 1.2.
-#' @param lower A lower bound of "uniroot" for lower limit (LL) calculation. 1e-08 is a default.
-#' @param upper A upper bound of "uniroot" for upper limit (UL) calculation. 1e+06 is a default.
-#' @param k A cutoff value for LI method. Unless specified, F-test is used.
+#' @param conf.level A confidence level for the CI method, also applied to the LI method.
+#' @param df A degree of freedom for the LI method in terms of the denominator degree of freedom of the F-test, or (n-df) of LRT, where n is the sample size of the input data. A default value of 1.2 is suggested for a single-group variance interval estimation. 
+#' @param lower A lower bound of 'uniroot' for the lower limit (LL) calculation. 1e-08 is a default.
+#' @param upper An upper bound of 'uniroot' for the upper limit (UL) calculation. 1e+06 is a default.
+#' @param k A cutoff value for the LI method. Unless specified, the F-test is used.
 #' @return Point Estimate (PE), lower limit/bound (LL/LB), upper limit/bound (UL/UB), width, sample size, cutoff value k and maximum log-likelihood function value are calculated.
 #' @examples
 #' x <- rnorm(20, 0, 1)
@@ -34,7 +34,7 @@ varE = function (data, conf.level = 0.95, df = 1.2,
   logk <- min(logk, log(2/(1 - conf.level)))}
   O2 <- function(th) maxLL + (n0 * log(2 * pi * th) + n0v0/th)/2 - logk
   varLL <- uniroot(O2, c(lower, v0))$root
-  varUL <- uniroot(O2, c(v0, upper * v0))$root
+  varUL <- uniroot(O2, c(v0, upper))$root
   varLB <- n0v0/qchisq(0.5 + conf.level/2, n0 - 1)
   varUB <- n0v0/qchisq(0.5 - conf.level/2, n0 - 1)
   LI <- c("Point Estimate" = v0, "lower" = varLL, "upper" = varUL,

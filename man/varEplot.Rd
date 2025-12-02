@@ -17,17 +17,17 @@ varEplot(
 \arguments{
 \item{data}{A numeric vector functioning as a sample data.}
 
-\item{logLRT}{A function type to be plotted. A default value "FALSE" refers to the log-likelihood function plot, while "TRUE" refers to the normalized log-likelihood ratio plot, or maxLL-LL.}
+\item{logLRT}{A function type to be plotted. A default value "FALSE" refers to the log-likelihood function plot, while "TRUE" refers to the normalized log-likelihood ratio plot, or maxLL - LL.}
 
-\item{conf.level}{A confidence level for CI method.}
+\item{conf.level}{A confidence level for the CI method, also applied to the LI method.}
 
-\item{df}{A degree of freedom for LI method in terms of the denominator degree of freedom of F-test, as (n-df) of LRT, where n is the sample size of input data. For a variance estimation, it is suggested to be 1.2.}
+\item{df}{A degree of freedom for the LI method in terms of the denominator degree of freedom of the F-test, or (n-df) of the LRT, where n is the sample size of the input data. A default value of 1.2 is suggested for a single-group variance interval estimation.}
 
-\item{low.scale}{A scaling factor for plotting the minimum value of x-axis, or a parameter value. The plot starts from "PE/low.scale". 3 is a default.}
+\item{low.scale}{A scaling factor for plotting the minimum value of the x-axis, or a parameter value. The plot starts with "PE/low.scale". 3 is a default.}
 
-\item{up.scale}{A scaling factor for plotting the maximum value of x-axis, or a parameter value. The plot starts from "PE*up.scale". 5 is a default.}
+\item{up.scale}{A scaling factor for plotting the maximum value of the x-axis, or a parameter value. The plot starts with "PE*up.scale". 5 is a default.}
 
-\item{k}{A cutoff value for LI method. Unless specified, F-test is used.}
+\item{k}{A cutoff value for the LI method. Unless specified, the F-test is used.}
 }
 \value{
 Plotted graph, either in the log-likelihood function or the normalized log-likelihood value.

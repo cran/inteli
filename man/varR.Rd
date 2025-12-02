@@ -15,19 +15,19 @@ varR(
 )
 }
 \arguments{
-\item{num.data}{A numeric vector functioning as a sample data, in a numerator position.}
+\item{num.data}{A numeric vector functioning as a sample data in a numerator position.}
 
-\item{denom.data}{A numeric vector functioning as a sample data, in a denominator position.}
+\item{denom.data}{A numeric vector functioning as a sample data in a denominator position.}
 
-\item{conf.level}{A confidence level for CI method.}
+\item{conf.level}{A confidence level for the CI method, also applied to the LI method.}
 
-\item{df}{A degree of freedom for LI method in terms of the denominator degree of freedom of F-test, as (n-df) of LRT, where n is the sum of sample sizes of input datum. For a variance ratio estimation, it is suggested to be 2.4.}
+\item{df}{A degree of freedom for the LI method in terms of the denominator degree of freedom of the F-test, or (n-df) of LRT, where n is the sum of the sample sizes of the input data. A default value of 2.4 is suggested for a two-group variance ratio interval estimation.}
 
-\item{lower}{A lower bound of "uniroot" for lower limit (LL) calculation. 1e-08 is a default.}
+\item{lower}{A lower bound of 'uniroot' for the lower limit (LL) calculation. 1e-08 is a default.}
 
-\item{upper}{A upper bound of "uniroot" for upper limit (UL) calculation. 1e+06 is a default.}
+\item{upper}{An upper bound of 'uniroot' for the upper limit (UL) calculation. 1e+06 is a default.}
 
-\item{k}{A cutoff value for LI method. Unless specified, F-test is used.}
+\item{k}{A cutoff value for the LI method. Unless specified, the F-test is used.}
 }
 \value{
 Point Estimate (PE), lower limit/bound (LL/LB), upper limit/bound (UL/UB), width, sample size, cutoff value k and maximum log-likelihood function value are calculated.
