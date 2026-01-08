@@ -1,15 +1,20 @@
 Package: inteli
-Title: Interval Estimation by Likelihoodist (LI) Compared to
-        Frequentist (CI)
-Version: 0.1.1
-Authors@R: person("Kim", "Minkyu", email = "mkim@acr.kr", role = c("aut", "cre"))
-Description: Parameter estimation via likelihood interval (LI) compared to traditional method (CI). This is the expanded version for 'LBI'- and 'wnl'-package, formulated by Kyun-Seop Bae <k@acr.kr>.
-License: MIT + file LICENSE
+Title: Interval Estimation by Likelihood Method
+Version: 0.1.2
+Authors@R: c(
+    person("Minkyu", "Kim", , "mkim@acr.kr", role = c("aut", "cre")),
+    person("Kyun-Seop", "Bae", , "k@acr.kr", role = "aut",
+    comment = c(ORCID = "0000-0001-7399-5879"))
+    )
+Description: Currently used CI method has its limitation when the test statistics are asymmetrical (chi-square test, F-test) or the model functions are non-linear. It can be overcome by using the likelihood functions for the interval estimation. 'inteli' package now supports interval estimation for the mean, variance, variance ratio, binomial distribution, Poisson distribution, odds ratio, risk difference, relative risk and their likelihood function plots. Testing functions are also provided.
+License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.3.3
+Imports: graphics, stats
 NeedsCompilation: no
-Packaged: 2025-12-02 15:31:08 UTC; mkim
-Author: Kim Minkyu [aut, cre]
-Maintainer: Kim Minkyu <mkim@acr.kr>
+Packaged: 2025-12-26 02:47:08 UTC; mkim
+Author: Minkyu Kim [aut, cre],
+  Kyun-Seop Bae [aut] (ORCID: <https://orcid.org/0000-0001-7399-5879>)
+Maintainer: Minkyu Kim <mkim@acr.kr>
 Repository: CRAN
-Date/Publication: 2025-12-02 15:50:02 UTC
+Date/Publication: 2026-01-08 00:00:08 UTC
