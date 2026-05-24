@@ -6,7 +6,6 @@
 }
 \arguments{
   \item{data}{a numeric vector of data values; mandatory}
-  \item{plot}{likelihood function plots by LI; default is "all". 'OBJ', 'O1', '1' is objective function plot; 'OFV', 'O2', '2' is log likelihood function plot; 'LRT', 'O3', '3' is log LRT function plot.}
   \item{conf.level}{confidence level for the interval estimation}
   \item{df}{degree of freedom for likelihood interval; default is 1.2}
   \item{k}{cutoff value for likelihood interval. If not specified, F-test is used.}
@@ -20,5 +19,6 @@
 }
 \author{Kyun-Seop Bae <k@acr.kr>, Minkyu Kim <mkim@acr.kr>}
 \examples{
+  set.seed(2026)
   liv(rnorm(30, 0, 1))
 }

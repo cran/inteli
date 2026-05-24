@@ -3,7 +3,7 @@
 #' @export
 
 lipois = function (event, unit.time = 1, data.size = 1,
-                   plot = "all", conf.level = 0.95, eps = 1e-08, k)
+                   conf.level = 0.95, eps = 1e-08, k)
 {
   ifelse (length(event) == 1, Lam0 <- event/unit.time,
           "! Event count should be a natural number")
@@ -55,57 +55,48 @@ lipois = function (event, unit.time = 1, data.size = 1,
   plot <- c("Current plot setting is" = plot)
 
   dp <- seq(0, pUL + 2, length.out = 1e3)
-  if (plot == "all") {
-    O1plot <- function(p) {
-      plot(p, O1(p, logk), type = "l",
-           xlab = "Poisson Mean Value",
-           ylab = "maxLL - LL - logk",
-           main = "Objective Function (O1 type)")
-      abline(h = 0, col = "red")
-      abline(v = Lam0, lty=2)
-      legend("topright",
-             legend = c(paste("PE = ", format(Lam0, digits = 2)), "Zero Line"),
-             lty = c(2, 1),
-             col = c("black", "red"))
-    }
-    O2plot <- function(p) {
-      plot(p, O2(p, logk), type = "l",
-           xlab = "Poisson Mean Value",
-           ylab = "LL",
-           main = "Log Likelihood Function (O2 type)")
-      abline(h = maxLL, col = "blue")
-      abline(v = Lam0, lty=2)
-      abline(h = maxLL - logk, col = "red")
-      legend("bottomright",
-             legend=c(paste("PE = ", format(Lam0, digits = 2)),
-                      paste("maxLL = ", format(maxLL, digits = 4)),
-                      paste("maxLL-logk = ", format(maxLL-logk, digits = 4))),
-             lty=c(2, 1, 1),
-             col=c("black", "blue", "red"))
-    }
-    O3plot <- function(p) {
-      plot(p, O3(p, logk), type = "l",
-           xlab = "Poisson Mean Value",
-           ylab = "maxLL - LL",
-           main = "Log LRT (O3 type)")
-      abline(h = logk, col = "red")
-      abline(v = Lam0, lty = 2)
-      legend("topright",
-             legend = c(paste("PE = ", format(Lam0, digits = 2)),
+  O1plot <- function(p) {
+    plot(p, O1(p, logk), type = "l",
+         xlab = "Poisson Mean Value",
+         ylab = "maxLL - LL - logk",
+         main = "Objective Function (O1 type)")
+    abline(h = 0, col = "red")
+    abline(v = Lam0, lty=2)
+    legend("topright",
+           legend = c(paste("PE = ", format(Lam0, digits = 2)), "Zero Line"),
+           lty = c(2, 1),
+           col = c("black", "red"))
+  }
+  O2plot <- function(p) {
+    plot(p, O2(p, logk), type = "l",
+         xlab = "Poisson Mean Value",
+         ylab = "LL",
+         main = "Log Likelihood Function (O2 type)")
+    abline(h = maxLL, col = "blue")
+    abline(v = Lam0, lty=2)
+    abline(h = maxLL - logk, col = "red")
+    legend("bottomright",
+           legend=c(paste("PE = ", format(Lam0, digits = 2)),
+                    paste("maxLL = ", format(maxLL, digits = 4)),
+                    paste("maxLL-logk = ", format(maxLL-logk, digits = 4))),
+           lty=c(2, 1, 1),
+           col=c("black", "blue", "red"))
+  }
+  O3plot <- function(p) {
+    plot(p, O3(p, logk), type = "l",
+         xlab = "Poisson Mean Value",
+         ylab = "maxLL - LL",
+         main = "Log LRT (O3 type)")
+    abline(h = logk, col = "red")
+    abline(v = Lam0, lty = 2)
+    legend("topright",
+           legend = c(paste("PE = ", format(Lam0, digits = 2)),
                       paste("logk = ", format(logk, digits = 4))),
-             lty = c(2, 1),
-             col = c("black", "red"))
-    }
-    par(mfrow = c(2,2))
-    O1plot(dp); O2plot(dp); O3plot(dp)
-    par(mfrow = c(1,1))
-  } else if (plot == "OBJ" | plot == "O1" | plot == 1) {
-    O1plot(dp)
-  } else if (plot == "OFV" | plot == "O2" | plot == 2) {
-    O2plot(dp)
-  } else if (plot == "LRT" | plot == "O3" | plot == 3) {
-    O3plot(dp)
-  } else {}
-
-  return(list(demo = demo, LI = LI, CI = CI, plot = plot))
+           lty = c(2, 1),
+           col = c("black", "red"))
+  }
+  par(mfrow = c(2,2))
+  O1plot(dp); O2plot(dp); O3plot(dp)
+  par(mfrow = c(1,1))
+  return(list(demo = demo, LI = LI, CI = CI))
 }

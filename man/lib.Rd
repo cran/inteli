@@ -7,7 +7,6 @@
 \arguments{
   \item{event}{number of events from observed data; a numeric vector}
   \item{total}{total number of trials from observed data; a numeric vector}
-  \item{plot}{likelihood function plots by LI; default is "all"}
   \item{conf.level}{confidence level for the interval estimation}
   \item{eps}{machine epsilon value; default is 1e-08}
   \item{k}{cutoff value for likelihood interval. If not specified, F-test is used.}

@@ -4,7 +4,7 @@
 
 lirr = function (exposure.O_event.O, exposure.O_TOTAL,
                  exposure.X_event.O, exposure.X_TOTAL,
-                 plot = "all", conf.level = 0.95, eps = 1e-08, k)
+                 conf.level = 0.95, eps = 1e-08, k)
 {
   y1 <- exposure.O_event.O
   n1 <- exposure.O_TOTAL
@@ -119,65 +119,54 @@ lirr = function (exposure.O_event.O, exposure.O_TOTAL,
   LI <- c("Point Estimate" = RR0, "lower" = rLL, "upper" = rUL, "width" = rUL - rLL)
   CI <- c("Point Estimate" = RR0, "lower" = CI.low, "upper" = CI.up, "width" = CI.up - CI.low)
 
-  plot <- c("Current plot setting is" = plot)
-  z <- list(demo = demo, contin_2x2 = contin_2x2, LI = LI, CI = CI, plot = plot)
-
-  plot2 <- c("! Plot CANNOT be drawn :: DATA not supported")
-  z2 <- list(demo = demo, contin_2x2 = contin_2x2, LI = LI, CI = CI, plot = plot2)
+  z <- list(demo = demo, contin_2x2 = contin_2x2, LI = LI, CI = CI)
+  z2 <- list(demo = demo, contin_2x2 = contin_2x2, LI = LI, CI = CI)
 
   if (y1 < n1 & y2 < n2) {
     drr <- seq(0, rUL * 2, length.out = 1e3)
-    if (plot == "all") {
-      O1plot <- function(rr) {
-        plot(rr, O1t(rr), type = "l",
-             xlab = "Relative Risk Value",
-             ylab = "maxLL - LL - logk",
-             main = "Adj. Objective Function (O1 type)")
-        abline(h = 0, col = "red")
-        abline(v = RR0, lty=2)
-        legend("topright",
-               legend = c(paste("PE = ", format(RR0, digits = 2)), "Zero Line"),
-               lty = c(2, 1),
-               col = c("black", "red"))
-      }
-      O2plot <- function(rr) {
-        plot(rr, O2t(rr), type = "l",
-             xlab = "Relative Risk Value",
-             ylab = "LL",
-             main = "Adj. Log Likelihood Function (O2 type)")
-        abline(h = maxLL, col = "blue")
-        abline(v = RR0, lty=2)
-        abline(h = maxLL - logk, col = "red")
-        legend("bottomright",
-               legend = c(paste("PE = ", format(RR0, digits=2)),
-                          paste("maxLL = ", format(maxLL, digits=4)),
-                          paste("maxLL-logk = ", format(maxLL-logk, digits=4))),
-               lty = c(2, 1, 1),
-               col = c("black", "blue", "red"))
-      }
-      O3plot <- function(rr) {
-        plot(rr, O3t(rr), type = "l",
-             xlab = "Relative Risk Value",
-             ylab = "maxLL - LL",
-             main = "Adj. Log LRT (O3 type)")
-        abline(h = logk, col = "red")
-        abline(v = RR0, lty = 2)
-        legend("topright",
-               legend = c(paste("PE = ", format(RR0, digits = 2)),
-                          paste("logk = ", format(logk, digits = 4))),
-               lty = c(2, 1),
-               col = c("black", "red"))
-      }
-      par(mfrow = c(2,2))
-      O1plot(drr); O2plot(drr); O3plot(drr)
-      par(mfrow = c(1,1))
-    } else if (plot == "OBJ" | plot == "O1" | plot == 1) {
-      O1plot(drr)
-    } else if (plot == "OFV" | plot == "O2" | plot == 2) {
-      O2plot(drr)
-    } else if (plot == "LRT" | plot == "O3" | plot == 3) {
-      O3plot(drr)
-    } else {}
+    O1plot <- function(rr) {
+      plot(rr, O1t(rr), type = "l",
+           xlab = "Relative Risk Value",
+           ylab = "maxLL - LL - logk",
+           main = "Adj. Objective Function (O1 type)")
+      abline(h = 0, col = "red")
+      abline(v = RR0, lty=2)
+      legend("topright",
+             legend = c(paste("PE = ", format(RR0, digits = 2)), "Zero Line"),
+             lty = c(2, 1),
+             col = c("black", "red"))
+    }
+    O2plot <- function(rr) {
+      plot(rr, O2t(rr), type = "l",
+           xlab = "Relative Risk Value",
+           ylab = "LL",
+           main = "Adj. Log Likelihood Function (O2 type)")
+      abline(h = maxLL, col = "blue")
+      abline(v = RR0, lty=2)
+      abline(h = maxLL - logk, col = "red")
+      legend("bottomright",
+             legend = c(paste("PE = ", format(RR0, digits=2)),
+                        paste("maxLL = ", format(maxLL, digits=4)),
+                        paste("maxLL-logk = ", format(maxLL-logk, digits=4))),
+             lty = c(2, 1, 1),
+             col = c("black", "blue", "red"))
+    }
+    O3plot <- function(rr) {
+      plot(rr, O3t(rr), type = "l",
+           xlab = "Relative Risk Value",
+           ylab = "maxLL - LL",
+           main = "Adj. Log LRT (O3 type)")
+      abline(h = logk, col = "red")
+      abline(v = RR0, lty = 2)
+      legend("topright",
+             legend = c(paste("PE = ", format(RR0, digits = 2)),
+                        paste("logk = ", format(logk, digits = 4))),
+             lty = c(2, 1),
+             col = c("black", "red"))
+    }
+    par(mfrow = c(2,2))
+    O1plot(drr); O2plot(drr); O3plot(drr)
+    par(mfrow = c(1,1))
     z
   }
   else return(z2)

@@ -2,7 +2,7 @@
 #' @importFrom graphics abline legend par points
 #' @export
 
-lir = function (num.data, denom.data, plot = "all", conf.level = 0.95, df = 2.4, k)
+lir = function (num.data, denom.data, conf.level = 0.95, df.t = 2.4, k)
 {
   x <- num.data[!is.na(num.data)]
   y <- denom.data[!is.na(denom.data)]
@@ -25,6 +25,10 @@ lir = function (num.data, denom.data, plot = "all", conf.level = 0.95, df = 2.4,
   R0 <- v1 / v2
   R0c <- v1c / v2c
   n0 <- n1 + n2
+
+  if (n1 < 30 & n2 < 30) {
+    df <- max(df.t, 1.75 * max(n1, n2)/min(n1, n2))
+  } else df <- max(df.t, 1.5 * max(n1, n2)/min(n1, n2))
 
   if (!missing(k)) {
     logk <- log(k)
@@ -56,60 +60,51 @@ lir = function (num.data, denom.data, plot = "all", conf.level = 0.95, df = 2.4,
               "upper" = sqrt(varUL))
   CI <- c("Point Estimate" = R0c, "lower" = varLB, "upper" = varUB,
           "width" = varUB - varLB)
-  plot <- c("Current plot setting is" = plot)
 
   dr <- seq(varLL/2, varUL * 2, length.out = 1e3)
-  if (plot == "all") {
-    O1plot <- function(r) {
-      plot(r, O1(r), type = "l",
-           xlab = "Variance Ratio Value",
-           ylab = "maxLL - LL - logk",
-           main = "Objective Function (O1 type)")
-      abline(h = 0, col = "red")
-      abline(v = R0, lty=2)
-      legend("topright",
-             legend = c(paste("PE = ", format(R0, digits = 2)), "Zero Line"),
-             lty = c(2, 1),
-             col = c("black", "red"))
-    }
-    O2plot <- function(r) {
-      plot(r, O2(r), type = "l",
-           xlab = "Variance Ratio Value",
-           ylab = "LL",
-           main = "Log Likelihood Function (O2 type)")
-      abline(h = maxLL, col = "blue")
-      abline(v = R0, lty=2)
-      abline(h = maxLL - logk, col = "red")
-      legend("bottomright",
-             legend = c(paste("PE = ", format(R0, digits=2)),
+
+  O1plot <- function(r) {
+    plot(r, O1(r), type = "l",
+         xlab = "Variance Ratio Value",
+         ylab = "maxLL - LL - logk",
+         main = "Objective Function (O1 type)")
+    abline(h = 0, col = "red")
+    abline(v = R0, lty=2)
+    legend("topright",
+           legend = c(paste("PE = ", format(R0, digits = 2)), "Zero Line"),
+           lty = c(2, 1),
+           col = c("black", "red"))
+  }
+  O2plot <- function(r) {
+    plot(r, O2(r), type = "l",
+         xlab = "Variance Ratio Value",
+         ylab = "LL",
+         main = "Log Likelihood Function (O2 type)")
+    abline(h = maxLL, col = "blue")
+    abline(v = R0, lty=2)
+    abline(h = maxLL - logk, col = "red")
+    legend("bottomright",
+           legend = c(paste("PE = ", format(R0, digits=2)),
                       paste("maxLL = ", format(maxLL, digits=4)),
                       paste("maxLL-logk = ", format(maxLL-logk, digits=4))),
-             lty = c(2, 1, 1),
-             col = c("black", "blue", "red"))
-    }
-    O3plot <- function(r) {
-      plot(r, O3(r), type = "l",
-           xlab = "Variance Ratio Value",
-           ylab = "maxLL - LL",
-           main = "Log LRT (O3 type)")
-      abline(h = logk, col = "red")
-      abline(v = R0, lty = 2)
-      legend("topright",
-             legend = c(paste("PE = ", format(R0, digits = 2)),
-                        paste("logk = ", format(logk, digits = 4))),
-             lty = c(2, 1),
-             col = c("black", "red"))
-    }
-    par(mfrow = c(2,2))
-    O1plot(dr); O2plot(dr); O3plot(dr)
-    par(mfrow = c(1,1))
-  } else if (plot == "OBJ" | plot == "O1" | plot == 1) {
-    O1plot(dr)
-  } else if (plot == "OFV" | plot == "O2" | plot == 2) {
-    O2plot(dr)
-  } else if (plot == "LRT" | plot == "O3" | plot == 3) {
-    O3plot(dr)
-  } else {}
-
-  return(list(demo = demo, LI = LI, LI.sdR = LI.sdR, CI = CI, plot = plot))
+           lty = c(2, 1, 1),
+           col = c("black", "blue", "red"))
+  }
+  O3plot <- function(r) {
+    plot(r, O3(r), type = "l",
+         xlab = "Variance Ratio Value",
+         ylab = "maxLL - LL",
+         main = "Log LRT (O3 type)")
+    abline(h = logk, col = "red")
+    abline(v = R0, lty = 2)
+    legend("topright",
+           legend = c(paste("PE = ", format(R0, digits = 2)),
+                      paste("logk = ", format(logk, digits = 4))),
+           lty = c(2, 1),
+           col = c("black", "red"))
+  }
+  par(mfrow = c(2,2))
+  O1plot(dr); O2plot(dr); O3plot(dr)
+  par(mfrow = c(1,1))
+  return(list(demo = demo, LI = LI, LI.sdR = LI.sdR, CI = CI))
 }

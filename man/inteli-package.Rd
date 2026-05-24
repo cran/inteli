@@ -15,7 +15,7 @@ Parameter estimation via likelihood interval (LI) compared to conventional metho
 Authors:
 \itemize{
   \item Kyun-Seop Bae \email{k@acr.kr} (\href{https://orcid.org/0000-0001-7399-5879}{ORCID})
-  \item Minkyu Kim \email{mkim@acr.kr}
+  \item Minkyu Kim \email{mkim@acr.kr} (\href{https://orcid.org/0009-0001-0001-1661}{ORCID})
 }
 }
 \references{
